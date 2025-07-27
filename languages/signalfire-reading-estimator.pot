@@ -1,0 +1,96 @@
+# Copyright (C) 2024 Signalfire Reading Estimator
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Signalfire Reading Estimator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://signalfire.co.uk\n"
+"POT-Creation-Date: 2024-01-01 00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: signalfire-reading-estimator.php:46
+#: signalfire-reading-estimator.php:77
+#: signalfire-reading-estimator.php:200
+msgid "Reading time: %s min"
+msgstr ""
+
+#: signalfire-reading-estimator.php:130
+#: signalfire-reading-estimator.php:257
+msgid "Reading Estimator Settings"
+msgstr ""
+
+#: signalfire-reading-estimator.php:131
+msgid "Reading Estimator"
+msgstr ""
+
+#: signalfire-reading-estimator.php:143
+msgid "General Settings"
+msgstr ""
+
+#: signalfire-reading-estimator.php:150
+msgid "Words Per Minute"
+msgstr ""
+
+#: signalfire-reading-estimator.php:158
+msgid "Auto Display"
+msgstr ""
+
+#: signalfire-reading-estimator.php:166
+msgid "Display Position"
+msgstr ""
+
+#: signalfire-reading-estimator.php:174
+msgid "Post Types"
+msgstr ""
+
+#: signalfire-reading-estimator.php:182
+msgid "Display Text"
+msgstr ""
+
+#: signalfire-reading-estimator.php:206
+msgid "Configure how reading time is calculated and displayed."
+msgstr ""
+
+#: signalfire-reading-estimator.php:213
+msgid "Average reading speed in words per minute (default: 200)."
+msgstr ""
+
+#: signalfire-reading-estimator.php:220
+msgid "Automatically display reading time on posts."
+msgstr ""
+
+#: signalfire-reading-estimator.php:228
+msgid "Top of content"
+msgstr ""
+
+#: signalfire-reading-estimator.php:229
+msgid "Bottom of content"
+msgstr ""
+
+#: signalfire-reading-estimator.php:244
+msgid "Select which post types should display reading time."
+msgstr ""
+
+#: signalfire-reading-estimator.php:251
+msgid "Text to display. Use %s as placeholder for the time value."
+msgstr ""
+
+#: signalfire-reading-estimator.php:258
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: signalfire-reading-estimator.php:273
+msgid "Shortcode Usage"
+msgstr ""
+
+#: signalfire-reading-estimator.php:275
+msgid "Use the shortcode to display reading time anywhere:"
+msgstr ""
+
+#: signalfire-reading-estimator.php:277
+msgid "For a specific post:"
+msgstr ""
