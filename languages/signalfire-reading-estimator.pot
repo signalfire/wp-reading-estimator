@@ -1,5 +1,5 @@
 # Copyright (C) 2024 Signalfire Reading Estimator
-# This file is distributed under the GPL v2 or later.
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Signalfire Reading Estimator 1.0.0\n"

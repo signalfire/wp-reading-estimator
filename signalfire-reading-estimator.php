@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Signalfire Reading Estimator
  * Plugin URI: https://signalfire.co.uk
@@ -10,17 +11,17 @@
  * Requires at least: 5.0
  * Tested up to: 6.7
  * Requires PHP: 7.4
- * License: GPL v2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * License: GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class SignalfireReadingEstimator {
+class Sigukrest_Reading_Estimator {
     
-    private $option_name = 'sre_settings';
+    private $option_name = 'sigukrest_settings';
     
     public function __construct() {
         add_action('init', array($this, 'init'));
@@ -33,7 +34,7 @@ class SignalfireReadingEstimator {
     public function init() {
         
         add_filter('the_content', array($this, 'add_reading_time_to_content'));
-        add_shortcode('reading_time', array($this, 'reading_time_shortcode'));
+        add_shortcode('sigukrest_reading_time', array($this, 'reading_time_shortcode'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
     }
     
@@ -70,7 +71,7 @@ class SignalfireReadingEstimator {
     
     public function enqueue_styles() {
         wp_enqueue_style(
-            'signalfire-reading-estimator-style',
+            'sigukrest-reading-estimator-style',
             plugin_dir_url(__FILE__) . 'assets/style.css',
             array(),
             filemtime(plugin_dir_path(__FILE__) . 'assets/style.css')
@@ -144,10 +145,10 @@ class SignalfireReadingEstimator {
     }
     
     public function admin_init() {
-        register_setting('sre_settings_group', $this->option_name, array($this, 'sanitize_settings'));
+        register_setting('sigukrest_settings_group', $this->option_name, array($this, 'sanitize_settings'));
         
         add_settings_section(
-            'sre_general_section',
+            'sigukrest_general_section',
             __('General Settings', 'signalfire-reading-estimator'),
             array($this, 'general_section_callback'),
             'signalfire-reading-estimator'
@@ -158,7 +159,7 @@ class SignalfireReadingEstimator {
             __('Words Per Minute', 'signalfire-reading-estimator'),
             array($this, 'words_per_minute_callback'),
             'signalfire-reading-estimator',
-            'sre_general_section'
+            'sigukrest_general_section'
         );
         
         add_settings_field(
@@ -166,7 +167,7 @@ class SignalfireReadingEstimator {
             __('Auto Display', 'signalfire-reading-estimator'),
             array($this, 'display_on_posts_callback'),
             'signalfire-reading-estimator',
-            'sre_general_section'
+            'sigukrest_general_section'
         );
         
         add_settings_field(
@@ -174,7 +175,7 @@ class SignalfireReadingEstimator {
             __('Display Position', 'signalfire-reading-estimator'),
             array($this, 'display_position_callback'),
             'signalfire-reading-estimator',
-            'sre_general_section'
+            'sigukrest_general_section'
         );
         
         add_settings_field(
@@ -182,7 +183,7 @@ class SignalfireReadingEstimator {
             __('Post Types', 'signalfire-reading-estimator'),
             array($this, 'post_types_callback'),
             'signalfire-reading-estimator',
-            'sre_general_section'
+            'sigukrest_general_section'
         );
         
         add_settings_field(
@@ -190,11 +191,22 @@ class SignalfireReadingEstimator {
             __('Display Text', 'signalfire-reading-estimator'),
             array($this, 'display_text_callback'),
             'signalfire-reading-estimator',
-            'sre_general_section'
+            'sigukrest_general_section'
         );
     }
     
     public function sanitize_settings($input) {
+        // Verify user capabilities
+        if (!current_user_can('manage_options')) {
+            return get_option($this->option_name);
+        }
+        
+        // Additional security check - verify nonce if available
+        if (isset($_POST['_wpnonce']) && !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'sigukrest_settings_group-options')) {
+            add_settings_error($this->option_name, 'nonce_error', __('Security check failed. Please try again.', 'signalfire-reading-estimator'));
+            return get_option($this->option_name);
+        }
+        
         $sanitized = array();
         
         $sanitized['words_per_minute'] = isset($input['words_per_minute']) ? absint($input['words_per_minute']) : 200;
@@ -275,7 +287,7 @@ class SignalfireReadingEstimator {
                     <div id="post-body-content">
                         <form method="post" action="options.php">
                             <?php
-                            settings_fields('sre_settings_group');
+                            settings_fields('sigukrest_settings_group');
                             do_settings_sections('signalfire-reading-estimator');
                             submit_button();
                             ?>
@@ -287,9 +299,9 @@ class SignalfireReadingEstimator {
                             <h3 class="hndle"><span><?php echo esc_html__('Shortcode Usage', 'signalfire-reading-estimator'); ?></span></h3>
                             <div class="inside">
                                 <p><?php echo esc_html__('Use the shortcode to display reading time anywhere:', 'signalfire-reading-estimator'); ?></p>
-                                <code>[reading_time]</code>
+                                <code>[sigukrest_reading_time]</code>
                                 <p><?php echo esc_html__('For a specific post:', 'signalfire-reading-estimator'); ?></p>
-                                <code>[reading_time post_id="123"]</code>
+                                <code>[sigukrest_reading_time post_id="123"]</code>
                             </div>
                         </div>
                     </div>
@@ -300,4 +312,4 @@ class SignalfireReadingEstimator {
     }
 }
 
-new SignalfireReadingEstimator();
+new Sigukrest_Reading_Estimator();

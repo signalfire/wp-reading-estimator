@@ -1,5 +1,5 @@
 === Signalfire Reading Estimator ===
-Contributors: signalfire
+Contributors: signalfirecouk
 Donate link: https://signalfire.co.uk
 Tags: reading time, estimate, posts, content, analytics
 Requires at least: 5.0
@@ -35,7 +35,7 @@ Signalfire Reading Estimator automatically calculates and displays the estimated
 
 = Shortcode Usage =
 
-Use `[reading_time]` to display reading time for the current post, or `[reading_time post_id="123"]` for a specific post.
+Use `[sigukrest_reading_time]` to display reading time for the current post, or `[sigukrest_reading_time post_id="123"]` for a specific post.
 
 == Installation ==
 
@@ -59,7 +59,7 @@ By default, the plugin works with posts. You can configure it to work with pages
 
 = Can I place the reading time manually? =
 
-Yes, use the `[reading_time]` shortcode to place reading time anywhere in your content or theme files.
+Yes, use the `[sigukrest_reading_time]` shortcode to place reading time anywhere in your content or theme files.
 
 = Does this work with page builders? =
 
